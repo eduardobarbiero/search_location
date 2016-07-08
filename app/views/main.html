@@ -1,3 +1,24 @@
+
+<style>
+#mapa{
+  width: 100%;
+  height: 500px;
+  border: 1px solid #ccc;
+}
+</style>
 <div class="main-container" ng-controller="AppCtrl">
-  {{teste}}
+  <form ng-submit="getData(busca)">
+    <div class="row" style="height: 75px; width: 100%;">
+      CEP: <input type="text" ng-model="busca" placeholder="Insira um CEP"/>
+    </div>
+  </form>
+  <div ng-show="return">
+    <p>CEP: {{result.cep}}</p>
+    <p>Rua: {{result.logradouro}}</p>
+    <p>Bairro: {{result.bairro}}</p>
+    <p>Cidade: {{result.cidade}}</p>
+    <p>Estado: {{result.estado_info.nome}}</p>
+  </div>
+  <input type="button" ng-click="addMarker(result.logradouro + result.estado_info.nome);" value="Marcar mapa" ng-show="return">
+  <div id="mapa"></div>
 </div>
